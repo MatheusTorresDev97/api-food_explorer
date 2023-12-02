@@ -11,7 +11,7 @@ describe("UserCreateService", () => {
     userCreateService = new UserCreateService(userRepositoryInMemory);
   });
 
-  it("Deve cadastrar usuário", async () => {
+  it("must register user", async () => {
     const user = {
       name: "test",
       email: "test@email.com",
@@ -20,7 +20,7 @@ describe("UserCreateService", () => {
 
     const result = await userCreateService.execute(user);
 
-    expect(result).toEqual("Successfully");
+    expect(result).toHaveProperty("id");
   });
 
   it("must register a admin", async () => {
@@ -32,10 +32,10 @@ describe("UserCreateService", () => {
 
     const result = await userCreateService.execute(admin);
 
-    expect(result).toEqual("Successfully");
+    expect(result).toHaveProperty("id");
   });
 
-  it("Deve retornar um erro de dados ausentes", async () => {
+  it("should return a missing data error", async () => {
     const user = {
       name: "test",
       email: "",
@@ -49,7 +49,7 @@ describe("UserCreateService", () => {
     );
   });
 
-  it("Deve retornar um erro de 'e-mail em uso", async () => {
+  it("should return an 'email in use' error", async () => {
     const user = {
       name: "test",
       email: "test@email.com",
@@ -69,7 +69,7 @@ describe("UserCreateService", () => {
     );
   });
 
-  it("Deve retornar um erro de 'e-mail inválido", async () => {
+  it("should return an 'invalid email' error", async () => {
     const user = {
       name: "test",
       email: "test@email",

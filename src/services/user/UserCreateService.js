@@ -1,3 +1,4 @@
+require("dotenv/config");
 const AppError = require("../../utils/AppError");
 const { hash } = require("bcryptjs");
 
@@ -23,7 +24,6 @@ class UserCreateService {
       );
     }
 
-
     const requiredAttributesForValidEmail = email
       .split("@")[1]
       .split("")
@@ -42,14 +42,14 @@ class UserCreateService {
     const itIsAnAdminEmail = email.includes(process.env.ADMIN_EMAIL);
     const is_admin = itIsAnAdminEmail ? true : false;
 
-    await this.userRepository.create({
+    const userRegistered = await this.userRepository.create({
       name,
       email,
       password: passwordHashed,
       is_admin,
     });
 
-    return "Successfully";
+    return userRegistered;
   }
 }
 
