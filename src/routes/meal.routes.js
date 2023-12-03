@@ -5,11 +5,11 @@ const routes = Router();
 const mealsControllers = new MealsControllers();
 
 routes
-  .post("/", mealsControllers.create)
+.post("/", ensureThatIsAdmin, mealsControllers.create)
   .get("/", mealsControllers.index)
   .get("/:id", mealsControllers.show)
   .put("/:id", mealsControllers.update)
-  .put("/:id", mealsControllers.update)
-  .delete("/:id", mealsControllers.delete);
+  .put("/:id", ensureThatIsAdmin, mealsControllers.update)
+  .delete("/:id", ensureThatIsAdmin, mealsControllers.delete);
 
 module.exports = routes;
