@@ -5,10 +5,13 @@ const ensuresThatTheMealIsRegistered = require("../middlewares/ensuresThatTheMea
 const routes = Router();
 const favoritesControllers = new FavoritesControllers();
 
-routes.post(
-  "/:meal_id",
-  ensuresThatTheMealIsRegistered,
-  favoritesControllers.create
-);
+routes
+  .post(
+    "/:meal_id",
+    ensuresThatTheMealIsRegistered,
+    favoritesControllers.create
+  )
+  .get("/", favoritesControllers.index)
+  .delete("/:favorite_id", favoritesControllers.delete);
 
 module.exports = routes;
