@@ -1,20 +1,18 @@
-class MealIngredientUpdateService {
-  constructor(mealIngredientRepository) {
-    this.mealIngredientRepository = mealIngredientRepository;
+class OrderMealCreateService {
+  constructor(orderMealRepository) {
+    this.orderMealRepository = orderMealRepository;
   }
 
-  async execute({ meal_id, ingredients }) {
-    await this.mealIngredientRepository.delete(meal_id);
-
-    const ingredientsOfThisMeal = ingredients.map(ingredient => {
+  async execute({ meals, orderId }) {
+    const orderWithMeals = meals.map(meal => {
       return {
-        meal_id,
-        ingredient_id: ingredient.id,
+        order_id: orderId,
+        meal_id: meal.id,
       };
     });
 
-    await this.mealIngredientRepository.create(ingredientsOfThisMeal);
+    await this.orderMealRepository.create(orderWithMeals);
   }
 }
 
-module.exports = MealIngredientUpdateService;
+module.exports = OrderMealCreateService;
