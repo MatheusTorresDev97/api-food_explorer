@@ -1,5 +1,7 @@
 const { Router } = require("express");
 const MealsControllers = require("../controllers/MealsControllers");
+const ensureThatIsAdmin = require("../middlewares/ensureThatIsAdmin");
+const ensuresThatTheMealIsRegistered = require("../middlewares/ensuresThatTheMealIsRegistered");
 
 const routes = Router();
 const mealsControllers = new MealsControllers();
