@@ -1,14 +1,12 @@
-class MealIngredientUpdateService {
+class MealIngredientCreateService {
   constructor(mealIngredientRepository) {
     this.mealIngredientRepository = mealIngredientRepository;
   }
 
-  async execute({ meal_id, ingredients }) {
-    await this.mealIngredientRepository.delete(meal_id);
-
+  async execute({ mealId, ingredients }) {
     const ingredientsOfThisMeal = ingredients.map(ingredient => {
       return {
-        meal_id,
+        meal_id: mealId,
         ingredient_id: ingredient.id,
       };
     });
@@ -17,4 +15,4 @@ class MealIngredientUpdateService {
   }
 }
 
-module.exports = MealIngredientUpdateService;
+module.exports = MealIngredientCreateService;
