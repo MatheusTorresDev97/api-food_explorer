@@ -5,11 +5,20 @@ const routes = Router();
 const mealsControllers = new MealsControllers();
 
 routes
-.post("/", ensureThatIsAdmin, mealsControllers.create)
+  .post("/", ensureThatIsAdmin, mealsControllers.create)
   .get("/", mealsControllers.index)
-  .get("/:id", mealsControllers.show)
-  .put("/:id", mealsControllers.update)
-  .put("/:id", ensureThatIsAdmin, mealsControllers.update)
-  .delete("/:id", ensureThatIsAdmin, mealsControllers.delete);
+  .get("/:meal_id", ensuresThatTheMealIsRegistered, mealsControllers.show)
+  .put(
+    "/:meal_id",
+    ensureThatIsAdmin,
+    ensuresThatTheMealIsRegistered,
+    mealsControllers.update
+  )
+  .delete(
+    "/:meal_id",
+    ensureThatIsAdmin,
+    ensuresThatTheMealIsRegistered,
+    mealsControllers.delete
+  );
 
 module.exports = routes;
