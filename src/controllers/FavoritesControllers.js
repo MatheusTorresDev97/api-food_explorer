@@ -13,7 +13,7 @@ class FavoritesControllers {
 
     await favoriteCreateService.execute({ user_id, meal_id });
 
-    return response.json();
+    return response.status(201).json();
   }
 
   async index(request, response) {
@@ -24,7 +24,7 @@ class FavoritesControllers {
 
     const result = await favoriteIndexService.execute(user_id);
 
-    return response.json(result);
+    return response.status(201).json();
   }
 
   async delete(request, response) {
@@ -36,7 +36,7 @@ class FavoritesControllers {
 
     await favoriteDeleteService.execute({ user_id, meal_id });
 
-    return response.json();
+    return response.status(201).json();
   }
 }
 
