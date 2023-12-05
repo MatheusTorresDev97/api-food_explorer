@@ -16,7 +16,7 @@ const UserCheckIfIsAdmin = require("../services/user/UserCheckIfIsAdmin");
 
 class OrdersControllers {
   async create(request, response) {
-    const user_id = Number(request.query.user_id);
+    const user_id = request.user.id;
     const { meals_sent } = request.body;
 
     const mealRepository = new MealRepository();
@@ -51,7 +51,7 @@ class OrdersControllers {
   }
 
   async show(request, response) {
-    const { order_id } = request.params;
+    const user_id = request.user.id;
 
     const orderRepository = new OrderRepository();
     const orderShowService = new OrderShowService(orderRepository);
@@ -62,7 +62,7 @@ class OrdersControllers {
   }
 
   async index(request, response) {
-    const user_id = Number(request.query.user_id);
+    const user_id = request.user.id;
 
     const userRepository = new UserRepository();
     const userCheckIfIsAdmin = new UserCheckIfIsAdmin(userRepository);
