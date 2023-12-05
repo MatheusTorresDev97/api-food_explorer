@@ -32,7 +32,6 @@ class IngredientsRepository {
     return ingredient;
   }
 
-
   async findByName(name) {
     const ingredient = await knex("ingredients").where({ name }).first();
 
