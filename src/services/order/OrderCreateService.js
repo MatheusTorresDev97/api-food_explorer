@@ -3,8 +3,19 @@ class OrderCreateService {
     this.orderRepository = orderRepository;
   }
 
-  async execute({ user_id, meals }) {
-    const prices = meals.map(meal => parseFloat(meal.price));
+
+  async execute({ user_id, meals_sent, foundMeals }) {
+    if (foundMeals.length !== meals_sent.length) {
+      throw new AppError("Uma ou mais refeições não foram encontradas.");
+    }
+
+    const prices = meals_sent.map(mealSend => {
+      const mealPrice = foundMeals.find(
+        mealFounded => mealFounded.id == mealSend.meal_id
+      );
+
+      return parseFloat(mealPrice.price * mealSend.amount);
+    });
 
     const orderPrice = prices
       .reduce((prevValue, elem) => prevValue + elem)
