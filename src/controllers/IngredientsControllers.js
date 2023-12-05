@@ -10,9 +10,9 @@ class IngredientsControllers {
       ingredientsRepository
     );
 
-    await ingredientCreateService.execute({ name });
+    const ingredientInfos = await ingredientCreateService.execute({ name });
 
-    return response.json();
+    return response.status(201).json(ingredientInfos);
   }
 
   async index(request, response) {
