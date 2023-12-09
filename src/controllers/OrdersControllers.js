@@ -48,11 +48,11 @@ class OrdersControllers {
       meals_sent,
     });
 
-     return response.status(201).json();
+    return response.status(201).json();
   }
 
   async show(request, response) {
-    const user_id = request.user.id;
+    const { order_id } = request.params;
 
     const orderRepository = new OrderRepository();
     const orderShowService = new OrderShowService(orderRepository);

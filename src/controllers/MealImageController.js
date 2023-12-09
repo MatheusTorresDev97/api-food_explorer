@@ -1,4 +1,5 @@
 const ImageUpdateService = require("../services/image/ImageUpdateService");
+const MealRepository = require("../repositories/meal/MealRepository");
 const uploadConfigs = require("../configs/upload");
 
 class MealImageController {

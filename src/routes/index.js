@@ -12,7 +12,6 @@ routes
   .use("/users", userRoutes)
   .use("/meals", mealRoutes)
   .use("/ingredients", ingredientRoutes)
-  .use("/ingredients", ingredientRoutes)
   .use("/favorites", favoriteRoutes)
   .use("/orders", orderRoutes)
   .use("/sessions", sessionsRoutes);

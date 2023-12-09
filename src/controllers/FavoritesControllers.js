@@ -24,7 +24,7 @@ class FavoritesControllers {
 
     const result = await favoriteIndexService.execute(user_id);
 
-    return response.status(201).json();
+    return response.json(result);
   }
 
   async delete(request, response) {

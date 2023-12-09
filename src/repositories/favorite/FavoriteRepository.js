@@ -31,7 +31,6 @@ class FavoriteRepository {
     return favorite;
   }
 
-
   async findByUserAndMeal({ user_id, meal_id }) {
     const favoriteInfos = await knex("favorites")
       .where({ user_id, meal_id })
